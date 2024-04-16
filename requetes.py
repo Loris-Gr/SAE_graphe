@@ -17,12 +17,12 @@ def json_vers_nx(chemin):
 
 # Q2
 def collaborateurs_communs(G,u,v):
-    liste_colabo = []
+    liste_collabo = []
     for voisins1 in G.adj(u):
         for voisins2 in G.adj(v):
             if voisins1 == voisins2:
-                liste_colabo.append(voisins1)
-    return liste_colabo
+                liste_collabo.append(voisins1)
+    return liste_collabo
 
 # Q3
 def collaborateurs_proches(G,u,k):
