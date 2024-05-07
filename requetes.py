@@ -58,8 +58,29 @@ def distance_naive(G,u,v):
     return k
 
 def distance(G,u,v):
-    pass
-
+    if u not in G.nodes:
+        print(u,"est un illustre inconnu")
+        return None
+    if v not in G.nodes:
+        print(v,"est un illustre inconnu")
+        return None
+    distance_trouvee = False
+    distance = 0
+    collaborateurs = set()
+    collaborateurs.add(u)
+    while not distance_trouvee :
+        distance+=1
+        for i in range(distance):
+            collaborateurs_directs = set()
+            for c in collaborateurs:
+                for voisin in G.adj[c]:
+                    if voisin not in collaborateurs:
+                        collaborateurs_directs.add(voisin)
+            
+            collaborateurs = collaborateurs.union(collaborateurs_directs)
+            if v in collaborateurs :
+                return distance
+            
 # Q4
 def centralite(G,u):
     pass
