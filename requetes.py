@@ -49,10 +49,13 @@ def collaborateurs_proches(G,u,k):
     return collaborateurs
 
 def est_proche(G,u,v,k=1):
-    pass
+    return v in collaborateurs_proches(G,u,1)
 
 def distance_naive(G,u,v):
-    pass
+    k = 1
+    while v not in collaborateurs_proches(G,u,k):
+        k += 1
+    return k
 
 def distance(G,u,v):
     pass
