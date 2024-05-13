@@ -49,7 +49,7 @@ def collaborateurs_proches(G,u,k):
     return collaborateurs
 
 def est_proche(G,u,v,k=1):
-    return v in collaborateurs_proches(G,u,1)
+    return v in collaborateurs_proches(G,u,k)
 
 def distance_naive(G,u,v):
     k = 1
@@ -82,7 +82,30 @@ def distance(G,u,v):
             
 # Q4
 def centralite(G,u):
-    pass
+    if u not in G.nodes:
+        print(u,"est un illustre inconnu")
+        return None
+    collaborateurs = set()
+    collaborateurs.add(u)
+    print(collaborateurs)
+    distance_trouvee = False
+    distance = 0
+    while not distance_trouvee :
+        distance+=1
+        for i in range(distance):
+            collaborateurs_directs = set()
+            for c in collaborateurs:
+                longueur = len(c)
+                longueur_test = 0
+                for voisin in G.adj[c]:
+                    if voisin not in collaborateurs:
+                        collaborateurs_directs.add(voisin)
+                    else : 
+                        longueur_test+=1
+        collaborateurs = collaborateurs.union(collaborateurs_directs)
+        if longueur_test == longueur :
+            distance_trouvee = True
+    return distance
 
 def centre_hollywood(G):
     pass
