@@ -75,7 +75,6 @@ def distance(G,u,v):
                 for voisin in G.adj[c]:
                     if voisin not in collaborateurs:
                         collaborateurs_directs.add(voisin)
-            
             collaborateurs = collaborateurs.union(collaborateurs_directs)
             if v in collaborateurs :
                 return distance
@@ -94,3 +93,17 @@ def eloignement_max(G:nx.Graph):
 # Bonus
 def centralite_groupe(G,S):
     pass
+
+#pour tests :
+
+graphe = json_vers_nx("./data_100.txt")
+
+print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
+
+print(collaborateurs_proches(graphe, "Al Pacino", 3))
+
+print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
+
+print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
+
+print(distance(graphe, "John Travolta", "Ellen Barkin"))
