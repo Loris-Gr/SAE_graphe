@@ -4,14 +4,13 @@ import networkx as nx
 # Q1
 def json_vers_nx(chemin):
     G = nx.Graph()
-    cast = [actor.strip("[]") for actor in json_data.get("cast", [])]
-    directors = [director.strip("[]") for director in json_data.get("directors", [])]
-    producers = [producer.strip("[]") for producer in json_data.get("producers", [])]
-    companies = [company.strip("[]") for company in json_data.get("companies", [])]
-    for actor1 in cast:
-        for actor2 in cast:
-            if actor1 != actor2:
-                G.add_edge(actor1, actor2)
+    with open(chemin, "r") as jsonfile:
+        donnees = json.load(jsonfile)
+        acteurs = [actor.strip("[]") for actor in donnees.get("cast", [])]
+    for acteur1 in acteurs:
+        for acteur2 in acteurs:
+            if acteur1 != acteur2:
+                G.add_edge(acteur1, acteur2)
     return G
 
 
@@ -34,7 +33,7 @@ def collaborateurs_proches(G,u,k):
         k: la distance depuis u
     """
     if u not in G.nodes:
-        print(u,"est un illustre inconnu")
+        print(u," est un illustre inconnu")
         return None
     collaborateurs = set()
     collaborateurs.add(u)
@@ -59,10 +58,10 @@ def distance_naive(G,u,v):
 
 def distance(G,u,v):
     if u not in G.nodes:
-        print(u,"est un illustre inconnu")
+        print(u," est un illustre inconnu")
         return None
     if v not in G.nodes:
-        print(v,"est un illustre inconnu")
+        print(v," est un illustre inconnu")
         return None
     distance_trouvee = False
     distance = 0
