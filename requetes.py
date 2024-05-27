@@ -4,15 +4,17 @@ import networkx as nx
 # Q1
 def json_vers_nx(chemin):
     G = nx.Graph()
-    with open(chemin, "r") as jsonfile:
-        donnees = json.load(jsonfile)
-        acteurs = [actor.strip("[]") for actor in donnees.get("cast", [])]
-    for acteur1 in acteurs:
-        for acteur2 in acteurs:
-            if acteur1 != acteur2:
-                G.add_edge(acteur1, acteur2)
+    with open(chemin, mode="r", encoding="utf-8") as jsonfile:
+        for ligne in jsonfile:
+            acteurs = json.loads(ligne)["cast"]
+            acteurs2 = []
+            for charac in acteurs:
+                acteurs2.append(charac.strip("[]"))
+            for acteur1 in acteurs2:
+                for acteur2 in acteurs2:
+                    if acteur1 != acteur2:
+                        G.add_edge(acteur1, acteur2)
     return G
-
 
 # Q2
 def collaborateurs_communs(G,u,v):
@@ -28,8 +30,8 @@ qui ont collaboré.e.s avec ces deux personnes
         List: la liste des acteurs communs
     """    
     liste_collabo = []
-    for voisins1 in G.adj(u):
-        for voisins2 in G.adj(v):
+    for voisins1 in G.adj[u]:
+        for voisins2 in G.adj[v]:
             if voisins1 == voisins2:
                 liste_collabo.append(voisins1)
     return liste_collabo
@@ -48,7 +50,6 @@ def collaborateurs_proches(G,u,k):
         return None
     collaborateurs = set()
     collaborateurs.add(u)
-    print(collaborateurs)
     for i in range(k):
         collaborateurs_directs = set()
         for c in collaborateurs:
@@ -160,14 +161,14 @@ def centralite_groupe(G,S):
 
 #pour tests :
 
-graphe = json_vers_nx("./data_100.txt")
+graphe = json_vers_nx("data_100.txt")
 
-print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
+#print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
-print(collaborateurs_proches(graphe, "Al Pacino", 3))
+#print(collaborateurs_proches(graphe, "Al Pacino", 3))
 
-print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
+#print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
 
-print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
+#print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
 
-print(distance(graphe, "John Travolta", "Ellen Barkin"))
+#print(distance(graphe, "John Travolta", "Ellen Barkin"))
