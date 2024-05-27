@@ -17,6 +17,17 @@ def json_vers_nx(chemin):
 
 # Q2
 def collaborateurs_communs(G,u,v):
+    """fonction consiste à renvoyer pour deux acteurs/actrices donné.e.s, l’ensemble des acteurs/actrices
+qui ont collaboré.e.s avec ces deux personnes
+
+    Args:
+        G (nx.Graph): un graphe d'acteurs
+        u (String): l'acteur/actrice 1
+        v (String): l'acteur/actrive 2
+
+    Returns:
+        List: la liste des acteurs communs
+    """    
     liste_collabo = []
     for voisins1 in G.adj(u):
         for voisins2 in G.adj(v):
