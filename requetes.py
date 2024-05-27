@@ -120,7 +120,11 @@ def centre_hollywood(G):
 
 # Q5
 def eloignement_max(G:nx.Graph):
-    pass
+    centralite_max = None
+    for acteur in G.nodes :
+        distance = centralite(G, acteur)
+        if centralite_max is None or distance > centralite_max :
+            centralite_max = None
 
 # Bonus
 def centralite_groupe(G,S):
