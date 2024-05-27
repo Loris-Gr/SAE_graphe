@@ -108,6 +108,15 @@ def centralite(G,u):
     return distance
 
 def centre_hollywood(G):
+    """Fonction qui renvoie la personne la plus au centre d'Hollywood,
+      c'est à dire l'acteur qui a la plus faible centralité
+
+    Args:
+        G (nx.Graph): un graphe d'acteurs
+
+    Returns:
+        String : l'acteur central
+    """    
     acteur_central = None
     distance_acteur_centrale = None
     for acteur in G.nodes :
@@ -120,11 +129,20 @@ def centre_hollywood(G):
 
 # Q5
 def eloignement_max(G:nx.Graph):
+    """fonction qui calcule l'éloignement maximal de tout les acteurs du graphe G
+
+    Args:
+        G (nx.Graph): un graphe d'acteurs
+
+    Returns:
+        int : l'éloignement maximal
+    """    
     centralite_max = None
     for acteur in G.nodes :
         distance = centralite(G, acteur)
         if centralite_max is None or distance > centralite_max :
             centralite_max = None
+    return centralite_max
 
 # Bonus
 def centralite_groupe(G,S):
