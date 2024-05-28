@@ -1,5 +1,6 @@
 import json
 import networkx as nx
+import matplotlib as plt
 
 # Q1
 def json_vers_nx(chemin):
@@ -98,6 +99,7 @@ def centralite_groupe(G,S):
 #pour tests :
 
 graphe = json_vers_nx("data_100.txt")
+
 
 #print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
