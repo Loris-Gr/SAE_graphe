@@ -1,19 +1,21 @@
 import json
 import networkx as nx
+import matplotlib as plt
 
 # Q1
 def json_vers_nx(chemin):
     G = nx.Graph()
-    cast = [actor.strip("[]") for actor in json_data.get("cast", [])]
-    directors = [director.strip("[]") for director in json_data.get("directors", [])]
-    producers = [producer.strip("[]") for producer in json_data.get("producers", [])]
-    companies = [company.strip("[]") for company in json_data.get("companies", [])]
-    for actor1 in cast:
-        for actor2 in cast:
-            if actor1 != actor2:
-                G.add_edge(actor1, actor2)
+    with open(chemin, mode="r", encoding="utf-8") as jsonfile:
+        for ligne in jsonfile:
+            acteurs = json.loads(ligne)["cast"]
+            acteurs2 = []
+            for charac in acteurs:
+                acteurs2.append(charac.strip("[]"))
+            for acteur1 in acteurs2:
+                for acteur2 in acteurs2:
+                    if acteur1 != acteur2:
+                        G.add_edge(acteur1, acteur2)
     return G
-
 
 # Q2
 def collaborateurs_communs(G,u,v):
@@ -28,9 +30,20 @@ qui ont collaboré.e.s avec ces deux personnes
     Returns:
         List: la liste des acteurs communs
     """    
+    """fonction consiste à renvoyer pour deux acteurs/actrices donné.e.s, l’ensemble des acteurs/actrices
+qui ont collaboré.e.s avec ces deux personnes
+
+    Args:
+        G (nx.Graph): un graphe d'acteurs
+        u (String): l'acteur/actrice 1
+        v (String): l'acteur/actrive 2
+
+    Returns:
+        List: la liste des acteurs communs
+    """    
     liste_collabo = []
-    for voisins1 in G.adj(u):
-        for voisins2 in G.adj(v):
+    for voisins1 in G.adj[u]:
+        for voisins2 in G.adj[v]:
             if voisins1 == voisins2:
                 liste_collabo.append(voisins1)
     return liste_collabo
@@ -45,11 +58,10 @@ def collaborateurs_proches(G,u,k):
         k: la distance depuis u
     """
     if u not in G.nodes:
-        print(u,"est un illustre inconnu")
+        print(u," est un illustre inconnu")
         return None
     collaborateurs = set()
     collaborateurs.add(u)
-    print(collaborateurs)
     for i in range(k):
         collaborateurs_directs = set()
         for c in collaborateurs:
@@ -70,10 +82,10 @@ def distance_naive(G,u,v):
 
 def distance(G,u,v):
     if u not in G.nodes:
-        print(u,"est un illustre inconnu")
+        print(u," est un illustre inconnu")
         return None
     if v not in G.nodes:
-        print(v,"est un illustre inconnu")
+        print(v," est un illustre inconnu")
         return None
     distance_trouvee = False
     distance = 0
@@ -136,7 +148,6 @@ def centre_hollywood(G):
             distance_acteur_centrale = distance
             acteur_central = acteur
     return acteur_central
-
 
 # Q5
 def eloignement_max(G:nx.Graph):
