@@ -19,6 +19,17 @@ def json_vers_nx(chemin):
 
 # Q2
 def collaborateurs_communs(G,u,v):
+    """fonction consiste à renvoyer pour deux acteurs/actrices donné.e.s, l’ensemble des acteurs/actrices
+qui ont collaboré.e.s avec ces deux personnes
+
+    Args:
+        G (nx.Graph): un graphe d'acteurs
+        u (String): l'acteur/actrice 1
+        v (String): l'acteur/actrive 2
+
+    Returns:
+        List: la liste des acteurs communs
+    """    
     liste_collabo = []
     for voisins1 in G.adj[u]:
         for voisins2 in G.adj[v]:
@@ -83,14 +94,67 @@ def distance(G,u,v):
             
 # Q4
 def centralite(G,u):
-    pass
+    if u not in G.nodes:
+        print(u,"est un illustre inconnu")
+        return None
+    collaborateurs = set()
+    collaborateurs.add(u)
+    print(collaborateurs)
+    distance_trouvee = False
+    distance = 0
+    while not distance_trouvee :
+        distance+=1
+        for i in range(distance):
+            collaborateurs_directs = set()
+            for c in collaborateurs:
+                longueur = len(c)
+                longueur_test = 0
+                for voisin in G.adj[c]:
+                    if voisin not in collaborateurs:
+                        collaborateurs_directs.add(voisin)
+                    else : 
+                        longueur_test+=1
+        collaborateurs = collaborateurs.union(collaborateurs_directs)
+        if longueur_test == longueur :
+            distance_trouvee = True
+    return distance
 
 def centre_hollywood(G):
-    pass
+    """Fonction qui renvoie la personne la plus au centre d'Hollywood,
+      c'est à dire l'acteur qui a la plus faible centralité
+
+    Args:
+        G (nx.Graph): un graphe d'acteurs
+
+    Returns:
+        String : l'acteur central
+    """    
+    acteur_central = None
+    distance_acteur_centrale = None
+    for acteur in G.nodes :
+        distance = centralite(G, acteur)
+        if distance_acteur_centrale is None or distance < distance_acteur_centrale :
+            distance_acteur_centrale = distance
+            acteur_central = acteur
+    return acteur_central
+
 
 # Q5
 def eloignement_max(G:nx.Graph):
-    pass
+    """fonction qui calcule l'éloignement maximal de tout les acteurs du graphe G
+
+    Args:
+        G (nx.Graph): un graphe d'acteurs
+
+    Returns:
+        int : l'éloignement maximal
+    """    
+    centralite_max = None
+    for acteur in G.nodes :
+        distance = centralite(G, acteur)
+        if centralite_max is None or distance > centralite_max :
+            centralite_max = None
+    return centralite_max
 
 # Bonus
 def centralite_groupe(G,S):
