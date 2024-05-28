@@ -110,24 +110,19 @@ def centralite(G,u):
         return None
     collaborateurs = set()
     collaborateurs.add(u)
-    print(collaborateurs)
-    distance_trouvee = False
+    acteurs_en_cours = G.adj[u]
     distance = 0
-    while not distance_trouvee :
+    while acteurs_en_cours != {} :
+        collaborateurs_directs = set()
+        for acteur in acteurs_en_cours:
+            for voisin in G.adj[acteur]:
+                if voisin not in collaborateurs:
+                    collaborateurs_directs.add(voisin)
+        collaborateurs = collaborateurs.union(acteurs_en_cours)
+        acteurs_en_cours = voisin
+        if acteurs_en_cours == set() :
+            return distance
         distance+=1
-        for i in range(distance):
-            collaborateurs_directs = set()
-            for c in collaborateurs:
-                longueur = len(c)
-                longueur_test = 0
-                for voisin in G.adj[c]:
-                    if voisin not in collaborateurs:
-                        collaborateurs_directs.add(voisin)
-                    else : 
-                        longueur_test+=1
-        collaborateurs = collaborateurs.union(collaborateurs_directs)
-        if longueur_test == longueur :
-            distance_trouvee = True
     return distance
 
 def centre_hollywood(G):
@@ -174,12 +169,16 @@ def centralite_groupe(G,S):
 
 graphe = json_vers_nx("./data_100.txt")
 
-print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
+#print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
-print(collaborateurs_proches(graphe, "Al Pacino", 3))
+#print(collaborateurs_proches(graphe, "Al Pacino", 3))
 
-print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
+#print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
 
-print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
+#print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
 
-print(distance(graphe, "John Travolta", "Ellen Barkin"))
+#print(distance(graphe, "John Travolta", "Ellen Barkin"))
+
+#print(centralite(graphe, "Al Pacino"))
+
+print(eloignement_max(graphe))
