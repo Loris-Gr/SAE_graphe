@@ -182,12 +182,16 @@ def centralite_groupe(G,S):
 
 graphe = json_vers_nx("data_100.txt")
 
-#print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
+print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
-#print(collaborateurs_proches(graphe, "Al Pacino", 3))
+print(collaborateurs_proches(graphe, "Al Pacino", 1))
 
-#print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
+print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
 
-#print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
+print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
 
-#print(distance(graphe, "John Travolta", "Ellen Barkin"))
+print(distance(graphe, "John Travolta", "Ellen Barkin"))
+
+print(centralite(graphe, "Al Pacino"))
+
+print(centre_hollywood(graphe))
