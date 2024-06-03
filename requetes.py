@@ -108,21 +108,16 @@ def centralite(G,u):
     if u not in G.nodes:
         print(u,"est un illustre inconnu")
         return None
-    collaborateurs = set()
-    collaborateurs.add(u)
-    acteurs_en_cours = G.adj[u]
+    collaborateurs = {u: 0} 
+    acteurs_en_cours = [u]
     distance = 0
-    while acteurs_en_cours != {} :
-        collaborateurs_directs = set()
-        for acteur in acteurs_en_cours:
-            for voisin in G.adj[acteur]:
-                if voisin not in collaborateurs:
-                    collaborateurs_directs.add(voisin)
-        collaborateurs = collaborateurs.union(acteurs_en_cours)
-        acteurs_en_cours = voisin
-        if acteurs_en_cours == set() :
-            return distance
-        distance+=1
+    while len(acteurs_en_cours) > 0 :
+        acteur = acteurs_en_cours.pop(0)
+        for l_acteur_en_cours in G[acteur]:
+            if l_acteur_en_cours not in collaborateurs:
+                acteurs_en_cours.append(l_acteur_en_cours)
+                collaborateurs[l_acteur_en_cours] = collaborateurs[acteur] + 1
+                distance = max(distance, collaborateurs[l_acteur_en_cours])
     return distance
 
 def centre_hollywood(G):
@@ -179,6 +174,6 @@ graphe = json_vers_nx("./data_100.txt")
 
 #print(distance(graphe, "John Travolta", "Ellen Barkin"))
 
-#print(centralite(graphe, "Al Pacino"))
+print(centralite2(graphe, "Al Pacino"))
 
-print(eloignement_max(graphe))
+#print(eloignement_max(graphe))
