@@ -69,15 +69,46 @@ def collaborateurs_proches(G,u,k):
     return collaborateurs
 
 def est_proche(G,u,v,k=1):
+    """renvoi si les acteurs sont proche (c'est à dire distance entre les deux égal à k)
+
+    Args:
+        G (Graph): Grpahe d'entrée
+        u (String): acteur 1
+        v (String): acteur 2
+        k (int, optional): distance de test. Defaults to 1.
+
+    Returns:
+        bool: True si l'acteur est à la distance k false sinon
+    """    
     return v in collaborateurs_proches(G,u,1)
 
 def distance_naive(G,u,v):
+    """renvoi la distance entre deux acteurs
+
+    Args:
+        G (Graphe): graphe d'entrée
+        u (String): acteur 1
+        v (String): acteur 2
+
+    Returns:
+        int: distance entre les deux acteurs
+    """    
     k = 1
     while v not in collaborateurs_proches(G,u,k):
         k += 1
     return k
 
 def distance(G,u,v):
+    """renvoi la distance entre deux acteurs
+
+    Args:
+        G (Graphe): graphe d'entrée
+        u (String): acteur 1
+        v (String): acteur 2
+
+    Returns:
+        int: distance entre les deux acteurs
+    """ 
     if u not in G.nodes:
         print(u," est un illustre inconnu")
         return None
