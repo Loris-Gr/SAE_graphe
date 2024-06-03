@@ -1,5 +1,6 @@
 import json
 import networkx as nx
+import matplotlib as plt
 
 # Q1
 def json_vers_nx(chemin):
@@ -68,18 +69,7 @@ def collaborateurs_proches(G,u,k):
     return collaborateurs
 
 def est_proche(G,u,v,k=1):
-    """fonction qui dit si les deux acteurs sont reliés
-
-    Args:
-        G (Graphe): graphe d'entrée
-        u (str): premier acteur
-        v (str): deuxieme acteur
-        k (int, optional): distance de 1 entre les acteurs. Defaults to 1.
-
-    Returns:
-        bool: True si les deux acteurs sont reliés, False sinon
-    """    
-    return v in collaborateurs_proches(G,u,k)
+    return v in collaborateurs_proches(G,u,1)
 
 def distance_naive(G,u,v):
     k = 1
@@ -180,18 +170,14 @@ def centralite_groupe(G,S):
 
 #pour tests :
 
-graphe = json_vers_nx("data_100.txt")
+graphe = json_vers_nx("./data_100.txt")
 
-print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
+#print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
-print(collaborateurs_proches(graphe, "Al Pacino", 1))
+print(collaborateurs_proches(graphe, "Al Pacino", 3))
 
-print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
+#print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
 
-print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
+#print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
 
 print(distance(graphe, "John Travolta", "Ellen Barkin"))
-
-print(centralite(graphe, "Al Pacino"))
-
-print(centre_hollywood(graphe))
