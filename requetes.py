@@ -162,7 +162,9 @@ def centralite_groupe(G,S):
 
 #pour tests :
 
-graphe = json_vers_nx("./data_100.txt")
+import time
+
+graphe = json_vers_nx("./data_1000.txt")
 
 #print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
@@ -174,6 +176,11 @@ graphe = json_vers_nx("./data_100.txt")
 
 #print(distance(graphe, "John Travolta", "Ellen Barkin"))
 
-print(centralite2(graphe, "Al Pacino"))
+#print(centralite(graphe, "Al Pacino"))
 
 #print(eloignement_max(graphe))
+
+start = time.time()
+print(centre_hollywood(graphe))
+end = time.time()
+print(end - start)
