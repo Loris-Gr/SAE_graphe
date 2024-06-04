@@ -181,6 +181,6 @@ graphe = json_vers_nx("./data_1000.txt")
 #print(eloignement_max(graphe))
 
 start = time.time()
-print(centre_hollywood(graphe))
+#print(centre_hollywood(graphe))
 end = time.time()
 print(end - start)

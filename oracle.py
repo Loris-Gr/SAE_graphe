@@ -25,7 +25,7 @@ def programme_principal():
                 while acteur1 not in graphe.nodes :
                     acteur1 = input("Pour commencer quel est votre 1er acteur ? Attention à bien mettre les majuscules ! \n")
                 while acteur2 not in graphe.nodes :
-                    acteur2 = input("Pour commencer quel est votre 2ème acteur ? Attention à bien mettre les majuscules ! \n")
+                    acteur2 = input("Quel est votre 2ème acteur ? Attention à bien mettre les majuscules ! \n")
                 print("Voici la liste des collaborateurs communs à " + acteur1 + " et " + acteur2 + ":\n")
                 for acteur in requetes.collaborateurs_communs(graphe, acteur1, acteur2) :
                     print(acteur)
@@ -36,12 +36,12 @@ def programme_principal():
                 acteur = None
                 while acteur not in graphe.nodes :
                     acteur = input("Pour commencer quel est votre acteur ? Attention à bien mettre les majuscules ! \n")
-                k = input("Quel distance voulez-vous essayez ? \n")
-                print("Voici la liste des collaborateurs proches de " + acteur + " pour une distance de  " + k + ":\n")
+                k = int(input("Quel distance voulez-vous essayez ? \n"))
+                print("Voici la liste des collaborateurs proches de " + acteur + " pour une distance de  " + str(k) + ":\n")
                 for acteur in requetes.collaborateurs_proches(graphe, acteur, k) :
                     print(acteur)
                 time.sleep(3)
-                entree = input("Nous avons fait le tour des informations pour les collaborateurs proches de " + acteur + " pour une distance de  " + k + " ! \n Pour consulter les collaborateurs communs de deux acteurs tapez 1 ! \n Si vous voulez avoir des informations sur les collaborateurs proches d'un autre acteur ou d'une autre distance tapez 2 ! \n Si vous voulez avoir des connaître la distance entre deux acteurs tapez 3 ! \n Peut-être voulez-vous connaître la centralité d'un acteur ? Si oui tapez 4 ! \n Si vous souhaitez l'acteur central d'Hollywood tapez 5 ! \n Pour connaître l'éloignement maximal de tout les acteurs tapez 6 ! \n Si vous voulez quitter le menu d'interaction tapez 7 ! \n")
+                entree = input("Nous avons fait le tour des informations pour les collaborateurs proches de " + acteur + " pour une distance de  " + str(k) + " ! \n Pour consulter les collaborateurs communs de deux acteurs tapez 1 ! \n Si vous voulez avoir des informations sur les collaborateurs proches d'un autre acteur ou d'une autre distance tapez 2 ! \n Si vous voulez avoir des connaître la distance entre deux acteurs tapez 3 ! \n Peut-être voulez-vous connaître la centralité d'un acteur ? Si oui tapez 4 ! \n Si vous souhaitez l'acteur central d'Hollywood tapez 5 ! \n Pour connaître l'éloignement maximal de tout les acteurs tapez 6 ! \n Si vous voulez quitter le menu d'interaction tapez 7 ! \n")
         
         if entree == "3" : 
             while entree == "3":
@@ -50,8 +50,8 @@ def programme_principal():
                 while acteur1 not in graphe.nodes :
                     acteur1 = input("Pour commencer quel est votre 1er acteur ? Attention à bien mettre les majuscules ! \n")
                 while acteur2 not in graphe.nodes :
-                    acteur2 = input("Pour commencer quel est votre 2ème acteur ? Attention à bien mettre les majuscules ! \n")
-                print(acteur1 + " et " + acteur2 + "ont une distance de :" + requetes.distance(graphe,acteur1,acteur2) +" \n")
+                    acteur2 = input("Quel est votre 2ème acteur ? Attention à bien mettre les majuscules ! \n")
+                print(acteur1 + " et " + acteur2 + "ont une distance de :" + str(requetes.distance(graphe,acteur1,acteur2)) +" \n")
                 time.sleep(3)
                 entree = input("Nous avons fait le tour des informations pour la distance entre " + acteur1 + " et " + acteur2 + " ! \n Pour consulter les collaborateurs communs de deux acteurs tapez 1 ! \n Si vous voulez avoir des informations sur les collaborateurs proches d'un acteur tapez 2 ! \n Si vous voulez avoir des connaître la distance entre deux autres acteurs tapez 3 ! \n Peut-être voulez-vous connaître la centralité d'un acteur ? Si oui tapez 4 ! \n Si vous souhaitez l'acteur central d'Hollywood tapez 5 ! \n Pour connaître l'éloignement maximal de tout les acteurs tapez 6 ! \n Si vous voulez quitter le menu d'interaction tapez 7 ! \n")
         
