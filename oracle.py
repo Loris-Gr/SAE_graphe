@@ -26,7 +26,7 @@ def programme_principal():
                     acteur1 = input("Pour commencer quel est votre 1er acteur ? Attention à bien mettre les majuscules ! \n")
                 while acteur2 not in graphe.nodes :
                     acteur2 = input("Quel est votre 2ème acteur ? Attention à bien mettre les majuscules ! \n")
-                print("Voici la liste des collaborateurs communs à " + acteur1 + " et " + acteur2 + ":\n")
+                print("Voici la liste des collaborateurs communs à " + acteur1 + " et " + acteur2 + " :\n")
                 for acteur in requetes.collaborateurs_communs(graphe, acteur1, acteur2) :
                     print(acteur)
                 time.sleep(3)
@@ -51,7 +51,7 @@ def programme_principal():
                     acteur1 = input("Pour commencer quel est votre 1er acteur ? Attention à bien mettre les majuscules ! \n")
                 while acteur2 not in graphe.nodes :
                     acteur2 = input("Quel est votre 2ème acteur ? Attention à bien mettre les majuscules ! \n")
-                print(acteur1 + " et " + acteur2 + "ont une distance de :" + str(requetes.distance(graphe,acteur1,acteur2)) +" \n")
+                print(acteur1 + " et " + acteur2 + "ont une distance de : " + str(requetes.distance(graphe,acteur1,acteur2)) +" \n")
                 time.sleep(3)
                 entree = input("Nous avons fait le tour des informations pour la distance entre " + acteur1 + " et " + acteur2 + " ! \n Pour consulter les collaborateurs communs de deux acteurs tapez 1 ! \n Si vous voulez avoir des informations sur les collaborateurs proches d'un acteur tapez 2 ! \n Si vous voulez avoir des connaître la distance entre deux autres acteurs tapez 3 ! \n Peut-être voulez-vous connaître la centralité d'un acteur ? Si oui tapez 4 ! \n Si vous souhaitez l'acteur central d'Hollywood tapez 5 ! \n Pour connaître l'éloignement maximal de tout les acteurs tapez 6 ! \n Si vous voulez quitter le menu d'interaction tapez 7 ! \n")
         
@@ -60,7 +60,7 @@ def programme_principal():
                 acteur = None
                 while acteur not in graphe.nodes :
                     acteur = input("Pour commencer quel est votre acteur ? Attention à bien mettre les majuscules ! \n")
-                print(acteur + " a une centralité de " + requetes.centralite(graphe, acteur)+":\n")
+                print(acteur + " a une centralité de " + str(requetes.centralite(graphe, acteur)) + ": \n")
                 time.sleep(3)
                 entree = input("Nous avons fait le tour des informations pour la centralité de " + acteur + " ! \n Pour consulter les collaborateurs communs de deux acteurs tapez 1 ! \n Si vous voulez avoir des informations sur les collaborateurs proches d'un acteur tapez 2 ! \n Si vous voulez avoir des connaître la distance entre deux acteurs tapez 3 ! \n Peut-être voulez-vous connaître la centralité d'un autre acteur ? Si oui tapez 4 ! \n Si vous souhaitez l'acteur central d'Hollywood tapez 5 ! \n Pour connaître l'éloignement maximal de tout les acteurs tapez 6 ! \n Si vous voulez quitter le menu d'interaction tapez 7 ! \n")
         
@@ -76,7 +76,7 @@ def programme_principal():
             while entree == "6":
                 acteur = None
                 print ("Calcul de l'éloignement maximal en cours, cela peut être long... \n")
-                print("L'éloignement maximal est de " + requetes.eloignement_max(graphe) + " ! \n")
+                print("L'éloignement maximal est de " + str(requetes.eloignement_max(graphe)) + " ! \n")
                 time.sleep(3)
                 entree = input("Nous avons fait le tour pour l'éloignement maximal ! \n Pour consulter les collaborateurs communs de deux acteurs tapez 1 ! \n Si vous voulez avoir des informations sur les collaborateurs proches d'un acteur tapez 2 ! \n Si vous voulez avoir des connaître la distance entre deux acteurs tapez 3 ! \n Peut-être voulez-vous connaître la centralité d'un acteur ? Si oui tapez 4 ! \n Si vous souhaitez l'acteur central d'Hollywood tapez 5 ! \n Pour connaître l'éloignement maximal de tout les acteurs à nouveau tapez 6 ! \n Si vous voulez quitter le menu d'interaction tapez 7 ! \n")
         

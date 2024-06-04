@@ -153,7 +153,7 @@ def eloignement_max(G:nx.Graph):
     for acteur in G.nodes :
         distance = centralite(G, acteur)
         if centralite_max is None or distance > centralite_max :
-            centralite_max = None
+            centralite_max = distance
     return centralite_max
 
 # Bonus
