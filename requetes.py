@@ -80,7 +80,7 @@ def est_proche(G,u,v,k=1):
     Returns:
         bool: True si l'acteur est à la distance k false sinon
     """    
-    return v in collaborateurs_proches(G,u,1)
+    return v in collaborateurs_proches(G,u,k)
 
 def distance_naive(G,u,v):
     """renvoi la distance entre deux acteurs
@@ -192,7 +192,7 @@ def eloignement_max(G:nx.Graph):
     for acteur in G.nodes :
         distance = centralite(G, acteur)
         if centralite_max is None or distance > centralite_max :
-            centralite_max = None
+            centralite_max = distance
     return centralite_max
 
 # Bonus
