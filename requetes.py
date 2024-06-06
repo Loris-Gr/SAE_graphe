@@ -153,7 +153,7 @@ def eloignement_max(G:nx.Graph):
     for acteur in G.nodes :
         distance = centralite(G, acteur)
         if centralite_max is None or distance > centralite_max :
-            centralite_max = None
+            centralite_max = distance
     return centralite_max
 
 # Bonus
@@ -181,6 +181,6 @@ graphe = json_vers_nx("./data_1000.txt")
 #print(eloignement_max(graphe))
 
 start = time.time()
-print(centre_hollywood(graphe))
+#print(centre_hollywood(graphe))
 end = time.time()
 print(end - start)
