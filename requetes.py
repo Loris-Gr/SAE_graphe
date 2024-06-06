@@ -38,6 +38,17 @@ qui ont collaboré.e.s avec ces deux personnes
     Returns:
         List: la liste des acteurs communs
     """    
+    """fonction consiste à renvoyer pour deux acteurs/actrices donné.e.s, l’ensemble des acteurs/actrices
+qui ont collaboré.e.s avec ces deux personnes
+
+    Args:
+        G (nx.Graph): un graphe d'acteurs
+        u (String): l'acteur/actrice 1
+        v (String): l'acteur/actrive 2
+
+    Returns:
+        List: la liste des acteurs communs
+    """    
     liste_collabo = []
     for voisins1 in G.adj[u]:
         for voisins2 in G.adj[v]:
@@ -136,26 +147,16 @@ def centralite(G,u):
     if u not in G.nodes:
         print(u,"est un illustre inconnu")
         return None
-    collaborateurs = set()
-    collaborateurs.add(u)
-    print(collaborateurs)
-    distance_trouvee = False
+    collaborateurs = {u: 0} 
+    acteurs_en_cours = [u]
     distance = 0
-    while not distance_trouvee :
-        distance+=1
-        for i in range(distance):
-            collaborateurs_directs = set()
-            for c in collaborateurs:
-                longueur = len(c)
-                longueur_test = 0
-                for voisin in G.adj[c]:
-                    if voisin not in collaborateurs:
-                        collaborateurs_directs.add(voisin)
-                    else : 
-                        longueur_test+=1
-        collaborateurs = collaborateurs.union(collaborateurs_directs)
-        if longueur_test == longueur :
-            distance_trouvee = True
+    while len(acteurs_en_cours) > 0 :
+        acteur = acteurs_en_cours.pop(0)
+        for l_acteur_en_cours in G[acteur]:
+            if l_acteur_en_cours not in collaborateurs:
+                acteurs_en_cours.append(l_acteur_en_cours)
+                collaborateurs[l_acteur_en_cours] = collaborateurs[acteur] + 1
+                distance = max(distance, collaborateurs[l_acteur_en_cours])
     return distance
 
 def centre_hollywood(G):
@@ -176,7 +177,6 @@ def centre_hollywood(G):
             distance_acteur_centrale = distance
             acteur_central = acteur
     return acteur_central
-
 
 # Q5
 def eloignement_max(G:nx.Graph):
@@ -201,7 +201,9 @@ def centralite_groupe(G,S):
 
 #pour tests :
 
-graphe = json_vers_nx("./data_100.txt")
+import time
+
+graphe = json_vers_nx("./data_1000.txt")
 
 #print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
@@ -211,4 +213,13 @@ print(collaborateurs_proches(graphe, "Al Pacino", 3))
 
 #print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
 
-print(distance(graphe, "John Travolta", "Ellen Barkin"))
+#print(distance(graphe, "John Travolta", "Ellen Barkin"))
+
+#print(centralite(graphe, "Al Pacino"))
+
+#print(eloignement_max(graphe))
+
+start = time.time()
+#print(centre_hollywood(graphe))
+end = time.time()
+print(end - start)
