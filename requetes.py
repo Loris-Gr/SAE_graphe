@@ -10,7 +10,7 @@ def json_vers_nx(chemin):
         chemin (string): chemin vers le fichier de data
 
     Returns:
-        Graphe: graphe avec les acteurs reliés entre eux
+        G (nx.graph): graphe avec les acteurs reliés entre eux
     """    
     G = nx.Graph()
     with open(chemin, mode="r", encoding="utf-8") as jsonfile:
@@ -27,17 +27,6 @@ def json_vers_nx(chemin):
 
 # Q2
 def collaborateurs_communs(G,u,v):
-    """fonction consiste à renvoyer pour deux acteurs/actrices donné.e.s, l’ensemble des acteurs/actrices
-qui ont collaboré.e.s avec ces deux personnes
-
-    Args:
-        G (nx.Graph): un graphe d'acteurs
-        u (String): l'acteur/actrice 1
-        v (String): l'acteur/actrive 2
-
-    Returns:
-        List: la liste des acteurs communs
-    """    
     """fonction consiste à renvoyer pour deux acteurs/actrices donné.e.s, l’ensemble des acteurs/actrices
 qui ont collaboré.e.s avec ces deux personnes
 
@@ -67,9 +56,9 @@ def collaborateurs_proches(G,u,k):
     """Fonction renvoyant l'ensemble des acteurs à distance au plus k de l'acteur u dans le graphe G. La fonction renvoie None si u est absent du graphe.
     
     Parametres:
-        G: le graphe
-        u: le sommet de départ
-        k: la distance depuis u
+        G (nx.graph): le graphe
+        u (String): le sommet de départ
+        k (int): la distance depuis u
     """
     if u not in G.nodes:
         print(u," est un illustre inconnu")
@@ -89,7 +78,7 @@ def est_proche(G,u,v,k=1):
     """renvoi si les acteurs sont proche (c'est à dire distance entre les deux égal à k)
 
     Args:
-        G (Graph): Grpahe d'entrée
+        G (nx.graph): Graphe d'entrée
         u (String): acteur 1
         v (String): acteur 2
         k (int, optional): distance de test. Defaults to 1.
@@ -103,7 +92,7 @@ def distance_naive(G,u,v):
     """renvoi la distance entre deux acteurs
 
     Args:
-        G (Graphe): graphe d'entrée
+        G (nx.graph): graphe d'entrée
         u (String): acteur 1
         v (String): acteur 2
 
@@ -119,7 +108,7 @@ def distance(G,u,v):
     """renvoi la distance entre deux acteurs
 
     Args:
-        G (Graphe): graphe d'entrée
+        G (nx.graph): graphe d'entrée
         u (String): acteur 1
         v (String): acteur 2
 
@@ -150,6 +139,15 @@ def distance(G,u,v):
             
 # Q4
 def centralite(G,u):
+    """Fonction qui calcule la centralité d'un acteur
+
+    Args:
+        G (nx.graph): un graphe
+        u (String): un acteur
+
+    Returns:
+        int: la centralité de l'acteur
+    """    
     if u not in G.nodes:
         print(u,"est un illustre inconnu")
         return None
