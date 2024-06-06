@@ -48,7 +48,13 @@ qui ont collaboré.e.s avec ces deux personnes
 
     Returns:
         List: la liste des acteurs communs
-    """    
+    """
+    if u not in G.nodes:
+        print(u," est un illustre inconnu")
+        return None
+    if v not in G.nodes:
+        print(v," est un illustre inconnu")
+        return None
     liste_collabo = []
     for voisins1 in G.adj[u]:
         for voisins2 in G.adj[v]:
