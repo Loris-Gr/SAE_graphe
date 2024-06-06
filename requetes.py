@@ -48,7 +48,13 @@ qui ont collaboré.e.s avec ces deux personnes
 
     Returns:
         List: la liste des acteurs communs
-    """    
+    """
+    if u not in G.nodes:
+        print(u," est un illustre inconnu")
+        return None
+    if v not in G.nodes:
+        print(v," est un illustre inconnu")
+        return None
     liste_collabo = []
     for voisins1 in G.adj[u]:
         for voisins2 in G.adj[v]:
@@ -207,7 +213,7 @@ graphe = json_vers_nx("./data_1000.txt")
 
 #print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
-print(collaborateurs_proches(graphe, "Al Pacino", 3))
+#print(collaborateurs_proches(graphe, "Al Pacino", 3))
 
 #print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
 
