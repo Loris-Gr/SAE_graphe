@@ -43,3 +43,8 @@ def test_centralite():
 def test_centre_hollywood() :
     assert src.centre_hollywood(graphe) == "Al Pacino"
     assert src.centre_hollywood(graphe1000) == "Al Pacino"
+
+def test_eloignement_max() :
+    assert src.eloignement_max(graphe) == "" # à compléter
+    assert src.eloignement_max(graphe1000) == "" # à compléter
+    
