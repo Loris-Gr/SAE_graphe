@@ -36,15 +36,15 @@ def test_distance():
 def test_centralite():
     assert src.centralite(graphe, "Al Pacino") == 2
     assert src.centralite(graphe, "L'inconnu du graphe") is None
-    assert src.centralite(graphe, "James Ransone") == "" # à compléter
-    assert src.centralite(graphe, "John Goodman") == "" # à compléter
-
+    assert src.centralite(graphe, "James Ransone") == 3
+    assert src.centralite(graphe, "John Goodman") == 3
 
 def test_centre_hollywood() :
     assert src.centre_hollywood(graphe) == "Al Pacino"
     assert src.centre_hollywood(graphe1000) == "Al Pacino"
 
 def test_eloignement_max() :
-    assert src.eloignement_max(graphe) == "" # à compléter
-    assert src.eloignement_max(graphe1000) == "" # à compléter
+    assert src.eloignement_max(graphe) == 3
+    assert src.eloignement_max(graphe1000) == 4
+
     
