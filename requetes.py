@@ -203,26 +203,16 @@ def centralite_groupe(G,S):
 
 import time
 
-<<<<<<<<< Temporary merge branch 1
+graphe = json_vers_nx("./data_1000.txt")
 
 #print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
-#print(collaborateurs_proches(graphe, "Al Pacino", 3))
+print(collaborateurs_proches(graphe, "Al Pacino", 3))
 
 #print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
 
 #print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
 
-=========
-#print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
-
-#print(collaborateurs_proches(graphe, "Al Pacino", 3))
-
-#print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
-
-#print(distance_naive(graphe, "John Travolta", "Ellen Barkin"))
-
->>>>>>>>> Temporary merge branch 2
 #print(distance(graphe, "John Travolta", "Ellen Barkin"))
 
 #print(centralite(graphe, "Al Pacino"))

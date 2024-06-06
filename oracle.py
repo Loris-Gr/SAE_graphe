@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-def start():
-    Q = True
-    while Q:
-=======
 import requetes
 import time
 
@@ -95,4 +90,3 @@ def programme_principal():
             entree = input("Si vous voulez connaître les collaborateurs communs de deux acteurs tapez 1 ! \n Si vous voulez avoir des informations sur les collaborateurs proches d'un acteur tapez 2 ! \n Si vous voulez avoir des connaître la distance entre deux acteurs tapez 3 ! \n Peut-être voulez-vous connaître la centralité d'un acteur ? Si oui tapez 4 ! \n Si vous souhaitez l'acteur central d'Hollywood tapez 5 ! \n Pour connaître l'éloignement maximal de tout les acteurs tapez 6 ! \n Si vous voulez quitter le menu d'interaction tapez 7 ! \n ")        
 
 programme_principal()
->>>>>>> main
