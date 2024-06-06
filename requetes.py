@@ -213,7 +213,7 @@ graphe = json_vers_nx("./data_1000.txt")
 
 #print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
-#print(collaborateurs_proches(graphe, "Al Pacino", 3))
+print(collaborateurs_proches(graphe, "Al Pacino", 3))
 
 #print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
 
