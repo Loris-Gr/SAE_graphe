@@ -5,7 +5,7 @@ def programme_principal():
     entree = "1"
     graphe = None
     print("Bonjour ! Bienvenue dans la consultation !\n")
-    fichier = input("Quelle fichier voulez-vous utiliser ? \n data_100.txt ? Si oui tapez 1 ! \n data_1000.txt ? Si oui tapez 2 ! \n data_10000.txt ? Si oui tapez 3 ! \n")
+    fichier = input("Quelle fichier voulez-vous utiliser ? \n data_100.txt ? Si oui tapez 1 ! \n data_1000.txt ? Si oui tapez 2 ! \n data_10000.txt ? Si oui tapez 3 ! \n data.txt ? Si oui tapez 4 ! \n")  
     while graphe is None : 
         if fichier == "1" :
             graphe = requetes.json_vers_nx("./data_100.txt")
@@ -13,6 +13,8 @@ def programme_principal():
             graphe = requetes.json_vers_nx("./data_1000.txt")
         elif fichier == "3" :
             graphe = requetes.json_vers_nx("./data_10000.txt")
+        elif fichier == "4" :
+            graphe = requetes.json_vers_nx("./data.txt")
         else :
             fichier = input("Vous avez du faire une erreur, tapez : \n 1  : Pour utiliser le fichier avec 100 données. \n 2 : Pour utiliser avec 1000 données \n 3 : Pour utiliser avec 10000 données \n")
     entree = input("Maintenant passons à la consultation ! \n Si vous voulez connaître les collaborateurs communs de deux acteurs tapez 1 ! \n Si vous voulez avoir des informations sur les collaborateurs proches d'un acteur tapez 2 ! \n Si vous voulez avoir des connaître la distance entre deux acteurs tapez 3 ! \n Peut-être voulez-vous connaître la centralité d'un acteur ? Si oui tapez 4 ! \n Si vous souhaitez l'acteur central d'Hollywood tapez 5 ! \n Pour connaître l'éloignement maximal de tout les acteurs tapez 6 ! \n Si vous voulez quitter le menu d'interaction tapez 7 ! \n ")        
