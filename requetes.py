@@ -85,8 +85,11 @@ def est_proche(G,u,v,k=1):
 
     Returns:
         bool: True si l'acteur est à la distance k false sinon
-    """    
-    return v in collaborateurs_proches(G,u,k)
+    """  
+    collab_proches = collaborateurs_proches(G,u,k)
+    if collab_proches is None :
+        return False
+    return v in collab_proches
 
 def distance_naive(G,u,v):
     """renvoi la distance entre deux acteurs
@@ -98,10 +101,16 @@ def distance_naive(G,u,v):
 
     Returns:
         int: distance entre les deux acteurs
-    """    
+    """  
     k = 1
-    while v not in collaborateurs_proches(G,u,k):
+    collab_proches = collaborateurs_proches(G,u,k)  
+    if collab_proches is None :
+            return None   
+    while v not in collab_proches:
+        if collab_proches is None :
+            return None
         k += 1
+        collab_proches = collaborateurs_proches(G,u,k)
     return k
 
 def distance(G,u,v):
@@ -211,7 +220,7 @@ graphe = json_vers_nx("./data_1000.txt")
 
 #print(collaborateurs_communs(graphe,"Al Pacino", "James Woods"))
 
-print(collaborateurs_proches(graphe, "Al Pacino", 3))
+#print(collaborateurs_proches(graphe, "Al Pacino", 3))
 
 #print(est_proche(graphe, "Paul Newman", "Alicia Witt"))
 
@@ -223,7 +232,7 @@ print(collaborateurs_proches(graphe, "Al Pacino", 3))
 
 #print(eloignement_max(graphe))
 
-start = time.time()
+#start = time.time()
 #print(centre_hollywood(graphe))
-end = time.time()
-print(end - start)
+#end = time.time()
+#print(end - start)

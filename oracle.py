@@ -38,8 +38,8 @@ def programme_principal():
                     acteur = input("Pour commencer quel est votre acteur ? Attention à bien mettre les majuscules ! \n")
                 k = int(input("Quel distance voulez-vous essayez ? \n"))
                 print("Voici la liste des collaborateurs proches de " + acteur + " pour une distance de  " + str(k) + ":\n")
-                for acteur in requetes.collaborateurs_proches(graphe, acteur, k) :
-                    print(acteur)
+                for acteurs in requetes.collaborateurs_proches(graphe, acteur, k) :
+                    print(acteurs)
                 time.sleep(3)
                 entree = input("Nous avons fait le tour des informations pour les collaborateurs proches de " + acteur + " pour une distance de  " + str(k) + " ! \n Pour consulter les collaborateurs communs de deux acteurs tapez 1 ! \n Si vous voulez avoir des informations sur les collaborateurs proches d'un autre acteur ou d'une autre distance tapez 2 ! \n Si vous voulez avoir des connaître la distance entre deux acteurs tapez 3 ! \n Peut-être voulez-vous connaître la centralité d'un acteur ? Si oui tapez 4 ! \n Si vous souhaitez l'acteur central d'Hollywood tapez 5 ! \n Pour connaître l'éloignement maximal de tout les acteurs tapez 6 ! \n Si vous voulez quitter le menu d'interaction tapez 7 ! \n")
         
